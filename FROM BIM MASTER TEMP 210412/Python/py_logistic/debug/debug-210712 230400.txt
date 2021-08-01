@@ -1,0 +1,20 @@
+2021-07-12 23:04:00,552 -  INFO -  Program START
+2021-07-12 23:04:00,552 -  INFO -  Successfull load all variables
+2021-07-12 23:04:10,290 -  INFO -  Root Path VERIFIED
+2021-07-12 23:04:13,775 -  DEBUG -  User input DONE
+2021-07-12 23:04:13,871 -  DEBUG -  Data of Material and Equipmetn loaded DONE
+2021-07-12 23:04:14,925 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY-210712 230413.txt
+2021-07-12 23:04:17,312 -  DEBUG -  User lookup START
+2021-07-12 23:04:19,808 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-12 23:04:20,898 -  DEBUG -  User lookup DONE
+2021-07-12 23:04:44,980 -  DEBUG -  User lookup START
+2021-07-12 23:04:54,432 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-12 23:04:55,504 -  DEBUG -  User lookup DONE
+2021-07-12 23:05:27,206 -  DEBUG -  User lookup START
+2021-07-12 23:05:31,424 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-12 23:05:32,499 -  DEBUG -  User lookup DONE
+2021-07-12 23:05:43,495 -  WARNING -  Wrong menu index
+2021-07-12 23:05:48,243 -  DEBUG -  User lookup START
+2021-07-12 23:05:49,952 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-12 23:05:51,039 -  DEBUG -  User lookup DONE
+2021-07-12 23:06:16,847 -  INFO -  Program END

@@ -1,0 +1,12 @@
+PATH_ROOT	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic
+USER_NAME	TVPDUY
+TIME_OPEN	210720 151517
+SEARCH	[]	15
+SEARCH	[]	9
+SEARCH	[]	14
+SEARCH	[]	2
+SEARCH	[]	0
+SEARCH	[]	5
+SEARCH	[]	2
+SEARCH	[]	9
+SEARCH	['cay chong', 'giang nang', ' giang cheo']

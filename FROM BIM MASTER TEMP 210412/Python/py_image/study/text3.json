@@ -1,0 +1,20 @@
+{
+    "ParsedResults": [
+        {
+            "TextOverlay": {
+                "Lines": [],
+                "HasOverlay": false,
+                "Message": "Text overlay is not provided as it is not requested"
+            },
+            "TextOrientation": "0",
+            "FileParseExitCode": 1,
+            "ParsedText": "Announcing: Neural\r\nNetworks from Scratch wit...\r\nPysource\r\n3 N lugt xem � 8 th�ng tru6c\r\nCreate a simple Image\r\nClassifier - Neural Network...\r\nPysource\r\n4,2 N lugt xem � 8 th�ng tru�c\r\nCreate an automatic image\r\nclassifier - Neural Network...\r\nPysource\r\n2,2 N II-rot xem � 8 th�ng tru�c\r\n",
+            "ErrorMessage": "",
+            "ErrorDetails": ""
+        }
+    ],
+    "OCRExitCode": 1,
+    "IsErroredOnProcessing": false,
+    "ProcessingTimeInMilliseconds": "327",
+    "SearchablePDFURL": "Searchable PDF not generated as it was not requested."
+}

@@ -1,0 +1,19 @@
+Ngày	25/07/2021
+Số phiếu	PYC_210725000808
+Tên đơn vi yêu cầu/thuê	-----
+Dự án	-----
+Tháp	-----
+Hạng mục công việc	-----
+Đề nghị phòng	Phòng USD
+Mã số hàng hóa	HKNGANG1800KC,HKNGANG1800C
+Tên hàng hóa	Giằng ngang hoa khế 1m8 không chụp,Giằng ngang hoa khế 1m8 có chụp
+Đơn vị tính	Cây,Cây
+Số lượng tổng	1000
+Số lượng đã cấp	500
+Số lượng lần này	500
+Thời gian cung cấp	01/08/2021
+Ghi chú	-----
+Khối/phòng cung cấp VTTB	Phòng USD
+Khối/phòng quản lí VTTB	Phòng An Toàn
+Ban điều hành	-----
+Ý kiến của phòng ban phụ trách	-----

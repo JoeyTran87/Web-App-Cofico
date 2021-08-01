@@ -1,0 +1,4 @@
+2021-07-27 15:11:02,385 -  INFO -  Program START
+2021-07-27 15:11:11,915 -  INFO -  Root Path VERIFIED
+2021-07-27 15:11:14,051 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY-210727 151114.txt
+2021-07-27 15:11:16,163 -  DEBUG -  User input DONE

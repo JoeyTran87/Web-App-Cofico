@@ -1,0 +1,7 @@
+PATH_ROOT	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\release\main_USD_logistic-210717152559
+USER_NAME	TVPDUY
+TIME_OPEN	210717 152632
+SEARCH	[]	6
+SEARCH	[]	38
+ACCESS_DATA_STORAGE	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\release\main_USD_logistic-210717152559\data_vat_tu\tonkho.json	210717 152731
+DATA_STORAGE	1799

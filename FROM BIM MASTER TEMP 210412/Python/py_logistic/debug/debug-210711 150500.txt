@@ -1,0 +1,11 @@
+2021-07-11 15:05:00,281 -  INFO -  Program START
+2021-07-11 15:05:00,281 -  INFO -  Successfull load all variables
+2021-07-11 15:05:24,927 -  INFO -  Root Path VERIFIED
+2021-07-11 15:05:29,432 -  DEBUG -  User input DONE
+2021-07-11 15:05:29,504 -  DEBUG -  Data of Material and Equipmetn loaded DONE
+2021-07-11 15:05:30,514 -  INFO -  User Data INITIATED	c:/Users/USER/Documents/GitHub/cofico/cofico/FROM BIM MASTER TEMP 210412/Python/py_logistic\data_user\TVPDUY-210711 150529.txt
+2021-07-11 15:05:34,108 -  DEBUG -  User lookup START
+2021-07-11 15:05:51,070 -  DEBUG -  User lookup DONE
+2021-07-11 15:06:42,373 -  WARNING -  Wrong menu index
+2021-07-11 15:06:47,263 -  DEBUG -  User lookup START
+2021-07-11 15:07:02,373 -  DEBUG -  User lookup DONE

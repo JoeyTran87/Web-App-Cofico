@@ -1,9 +1,0 @@
-
-{   "ProjectNumber": "Project Number/ Số hiệu dự án",
-    "ProjectName": "Project Name / Tên dự án",
-    "ProjectAddress": "Project Address / Địa chỉ dự án",
-    "ProjectClient": "Project Client/ Chủ đầu tư dự án",
-    "ProjectType": "Project Type/Thể loại dự án",
-    "ProjectScale": "Project Scale/Quy mô dự án",
-    "ProjectDuration": "Project Duration/Thời lượng dự án"
-}

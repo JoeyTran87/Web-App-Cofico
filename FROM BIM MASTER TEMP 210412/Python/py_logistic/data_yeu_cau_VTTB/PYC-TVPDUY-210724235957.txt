@@ -1,0 +1,20 @@
+Ngày	24/07/2021
+Số phiếu	PYC_210724235957
+Tên đơn vi yêu cầu/thuê	Thủ kho công trình
+Dự án	Acredo
+Tháp	-----
+Hạng mục công việc	Giàn giáo bao che
+Đề nghị phòng	Phòng USD
+Mã số hàng hóa	HKCHONG2000K,HKNGANG1800C
+
+Tên hàng hóa	Cây chống hoa kế 2000 không nòng,Giằng ngang hoa khế 1m8 có chụp
+Đơn vị tính	Cây,Cây
+Số lượng tổng	1000,1000
+Số lượng đã cấp	500,500
+Số lượng lần này	500,500
+Thời gian cung cấp	31/07/2021
+Ghi chú	-----
+Khối/phòng cung cấp VTTB	Phòng USD
+Khối/phòng quản lí VTTB	Phòng An Toàn
+Ban điều hành	-----
+Ý kiến của phòng ban phụ trách	-----

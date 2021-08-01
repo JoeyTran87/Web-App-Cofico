@@ -1,0 +1,9 @@
+2021-07-27 16:57:37,242 -  INFO -  Program START
+2021-07-27 16:57:45,147 -  INFO -  Root Path VERIFIED
+2021-07-27 16:57:49,210 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY-210727 165749.txt
+2021-07-27 16:57:51,308 -  DEBUG -  User input DONE
+2021-07-27 16:57:51,375 -  INFO -  Update data path SUCCESSFUL
+2021-07-27 16:57:51,443 -  INFO -  Update data path SUCCESSFUL
+2021-07-27 16:57:51,444 -  DEBUG -  Data of Material and Equipmetn loaded DONE
+2021-07-27 16:57:56,108 -  DEBUG -  User lookup [Combine Data] START
+2021-07-27 16:58:00,536 -  DEBUG -  NO search-seperator in search value inputed

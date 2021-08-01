@@ -1,0 +1,20 @@
+{
+    "ParsedResults": [
+        {
+            "TextOverlay": {
+                "Lines": [],
+                "HasOverlay": false,
+                "Message": "Text overlay is not provided as it is not requested"
+            },
+            "TextOrientation": "0",
+            "FileParseExitCode": 1,
+            "ParsedText": "SHOP DRAWING 1 ASBUILT DRAWING\r\nSOH\r\nASI\r\nWAR\r\nSAM\r\nMAD\r\nSOHO\r\nASIANA CAPELLA\r\nWAREHOUSE LONG AN\r\nSAMSUNG RND\r\nMADISON HO TRAM\r\nhnthanhhang\r\nnhnhan btw\r\nt n mvi\r\nhnthanhhang\r\ndcmai\r\nhnthanhhang\r\ndcmai\r\nhnthanhhang\r\nhnthanhhang\r\nnhnhan btw\r\nt n mvi\r\nhnthanhhang\r\nnhnhan\r\n210608 210618\r\n210426 210615\r\nHOAN CONG\r\nKÉT cÅu 4\r\ncÄN\r\n210610 210731\r\n",
+            "ErrorMessage": "",
+            "ErrorDetails": ""
+        }
+    ],
+    "OCRExitCode": 1,
+    "IsErroredOnProcessing": false,
+    "ProcessingTimeInMilliseconds": "312",
+    "SearchablePDFURL": "Searchable PDF not generated as it was not requested."
+}

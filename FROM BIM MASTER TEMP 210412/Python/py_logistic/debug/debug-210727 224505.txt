@@ -1,0 +1,45 @@
+2021-07-27 22:45:05,993 -  INFO -  Program START
+2021-07-27 22:45:13,406 -  INFO -  Root Path VERIFIED
+2021-07-27 22:45:14,574 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY-210727 224514.txt
+2021-07-27 22:45:16,689 -  DEBUG -  User input DONE
+2021-07-27 22:45:16,752 -  INFO -  Update data path SUCCESSFUL
+2021-07-27 22:45:16,815 -  INFO -  Update data path SUCCESSFUL
+2021-07-27 22:45:16,816 -  DEBUG -  Data of Material and Equipmetn loaded DONE
+2021-07-27 22:45:19,201 -  DEBUG -  User lookup [Combine Data] START
+2021-07-27 22:45:22,303 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:23,396 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:23,396 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:24,490 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:24,490 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:25,606 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:25,607 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:26,693 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:26,693 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:27,800 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:27,800 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:28,884 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:28,884 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:29,974 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:29,974 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:31,064 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:31,064 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:32,150 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:32,150 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:33,236 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:33,236 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:34,331 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:34,331 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:35,423 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:35,423 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:36,502 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:36,502 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:37,578 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:37,578 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:38,666 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:38,666 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:39,770 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:39,770 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:40,854 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:40,854 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-27 22:45:41,925 -  DEBUG -  User lookup DONE
+2021-07-27 22:45:41,925 -  DEBUG -  NO search-seperator in search value inputed

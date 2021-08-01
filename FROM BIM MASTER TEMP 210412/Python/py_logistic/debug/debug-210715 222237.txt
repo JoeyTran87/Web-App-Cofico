@@ -1,0 +1,79 @@
+2021-07-15 22:22:37,829 -  INFO -  Program START
+2021-07-15 22:22:37,829 -  INFO -  Successfull load all variables
+2021-07-15 22:22:47,394 -  INFO -  Root Path VERIFIED
+2021-07-15 22:22:49,606 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY-210715 222249.txt
+2021-07-15 22:22:51,716 -  DEBUG -  User input DONE
+2021-07-15 22:22:51,847 -  DEBUG -  Data of Material and Equipmetn loaded DONE
+2021-07-15 22:23:52,820 -  DEBUG -  User lookup START
+2021-07-15 22:24:07,309 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:24:08,407 -  DEBUG -  User lookup DONE
+2021-07-15 22:24:20,629 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:24:21,713 -  DEBUG -  User lookup DONE
+2021-07-15 22:24:30,061 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:24:31,156 -  DEBUG -  User lookup DONE
+2021-07-15 22:24:38,069 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:24:39,164 -  DEBUG -  User lookup DONE
+2021-07-15 22:24:44,325 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:24:45,434 -  DEBUG -  User lookup DONE
+2021-07-15 22:25:34,989 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:25:36,087 -  DEBUG -  User lookup DONE
+2021-07-15 22:25:43,885 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:25:44,986 -  DEBUG -  User lookup DONE
+2021-07-15 22:25:49,381 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:25:50,468 -  DEBUG -  User lookup DONE
+2021-07-15 22:25:55,989 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:25:57,080 -  DEBUG -  User lookup DONE
+2021-07-15 22:26:14,245 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:26:15,326 -  DEBUG -  User lookup DONE
+2021-07-15 22:26:36,109 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:26:37,209 -  DEBUG -  User lookup DONE
+2021-07-15 22:26:43,988 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:26:45,068 -  DEBUG -  User lookup DONE
+2021-07-15 22:26:54,133 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:26:55,235 -  DEBUG -  User lookup DONE
+2021-07-15 22:27:06,726 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:27:07,834 -  DEBUG -  User lookup DONE
+2021-07-15 22:27:14,693 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:27:15,797 -  DEBUG -  User lookup DONE
+2021-07-15 22:27:26,021 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:27:27,115 -  DEBUG -  User lookup DONE
+2021-07-15 22:27:44,245 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:27:45,330 -  DEBUG -  User lookup DONE
+2021-07-15 22:28:31,372 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:28:32,457 -  DEBUG -  User lookup DONE
+2021-07-15 22:28:39,589 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:28:40,675 -  DEBUG -  User lookup DONE
+2021-07-15 22:28:47,421 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:28:48,512 -  DEBUG -  User lookup DONE
+2021-07-15 22:28:51,604 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:28:52,692 -  DEBUG -  User lookup DONE
+2021-07-15 22:28:57,748 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:28:58,837 -  DEBUG -  User lookup DONE
+2021-07-15 22:29:01,701 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:29:02,780 -  DEBUG -  User lookup DONE
+2021-07-15 22:29:30,644 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:29:31,723 -  DEBUG -  User lookup DONE
+2021-07-15 22:29:51,613 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:29:52,707 -  DEBUG -  User lookup DONE
+2021-07-15 22:29:54,932 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:29:56,024 -  DEBUG -  User lookup DONE
+2021-07-15 22:30:08,213 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:30:09,321 -  DEBUG -  User lookup DONE
+2021-07-15 22:30:12,132 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:30:13,217 -  DEBUG -  User lookup DONE
+2021-07-15 22:30:20,164 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:30:21,258 -  DEBUG -  User lookup DONE
+2021-07-15 22:30:32,500 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:30:33,589 -  DEBUG -  User lookup DONE
+2021-07-15 22:36:08,826 -  INFO -  Root Path VERIFIED
+2021-07-15 22:36:12,933 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY2-210715 223612.txt
+2021-07-15 22:36:15,045 -  DEBUG -  User input DONE
+2021-07-15 22:36:15,186 -  DEBUG -  Data of Material and Equipmetn loaded DONE
+2021-07-15 22:36:18,747 -  DEBUG -  User lookup START
+2021-07-15 22:36:23,180 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:36:24,282 -  DEBUG -  User lookup DONE
+2021-07-15 22:36:27,027 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:36:28,122 -  DEBUG -  User lookup DONE
+2021-07-15 22:36:36,932 -  DEBUG -  NO search-seperator in search value inputed
+2021-07-15 22:36:38,020 -  DEBUG -  User lookup DONE
+2021-07-15 22:36:51,484 -  INFO -  Program END
