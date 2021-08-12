@@ -22,7 +22,7 @@ from program_var import *
 from handle_data_user import *
 from main_tra_cuu_VTTB_ke_hoach import *
 from main_database_VTTB import *
-from main_program_configure import menu_program
+from main_program_configure import menu_program,menu_manager
 
 #----------------------------------------------------------------------------------#
 #----------------------------------------------------------------------------------#
@@ -122,7 +122,7 @@ def data_refresh():
     DATA_VTTB_COLUMN_HEADS = DATA_VTTB.columns
 
     logging.info('Update data path SUCCESSFUL')
-    print('\tRefresh Done !!')
+    # print('\tRefresh Done !!')
 
 #----------------------------------------------------------------------------------#
 #----------------------------------------------------------------------------------#
@@ -144,10 +144,8 @@ def start_program():
     global DATA_NAME_COMBINE,DATA_COMBINE,PATH_DATA_COMBINE,PATH_DATA_VTTB_COMBINE_EXIST
     global DATA_NAME_COMBINE_TRA_CUU,DATA_COMBINE_TRA_CUU,PATH_DATA_COMBINE_TRA_CUU,PATH_DATA_VTTB_COMBINE_TRA_CUU_EXIST
     global DATA_LIST, DATA_PATH_LIST,DATA_PATH_EXIST_LIST
-    global NAME_DATA_EDITOR_MAIN,NAME_DATA_SELECTOR,NAME_DATA_BUILDER
-    global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
-    global MENU_DATA_EDITOR_MAIN ,MENU_DATA_SELECTOR,MENU_DATA_BUILDER
     
+    global PATH_CONFIG , MENU_PROGRAM
 
 
     #-------------------------------------------------------# ASK DIR ROOT & USERNAME & SAY WELCOME
@@ -167,18 +165,15 @@ def start_program():
     # print(user_name,user_password,time_start)
     USER_NAME = input(f"\tVui lòng cho biết TÊN của bạn:{USER_INPUT_PREFIX} ").upper()
     TIME_START = time.strftime("%y%m%d %H%M%S",time.localtime(time.time()))       
-
     #-------------------------------------------------------# TẠO DỮ LIỆU NGƯỜI DÙNG
     PATH_USER_LOG = f"{PATH_ROOT_DIR}\\{SUBFOLDER_DATA_USER}\\{USER_NAME}-{TIME_START}.txt"
     log_user_action(f"PATH_ROOT\t{PATH_ROOT_DIR}")
     log_user_action(f"USER_NAME\t{USER_NAME}")
     log_user_action(f"TIME_OPEN\t{TIME_START}")    
     logging.info(f"User Data INITIATED\t{PATH_USER_LOG}")
-
-    spinWaiting(BREAKER)
+    
     show_heading_4(PROMP_SAY_HI.format(USER_NAME))
-    print(BREAKER)
-    show_heading_1(PROMP_WELCOME.format(USER_NAME))
+    show_heading_4(PROMP_WELCOME.format(USER_NAME))
     
     logging.debug('User input DONE')
 
@@ -229,14 +224,11 @@ def start_program():
     print(BREAKER)
     
     #-------------------------------------------------------# CONFIGURER
-    update_config()
-    MENU_DATA_EDITOR_MAIN = menu_program(PATH_CONFIG_DATA_EDITOR_MAIN)
-    MENU_DATA_BUILDER = menu_program(PATH_CONFIG_DATA_BUILDER)
-    MENU_DATA_SELECTOR = menu_program(PATH_CONFIG_DATA_SELECTOR)
-
-    # ASK ACTION
-    ASK_MENU = show_menu_tree_view(PROMP_MAIN_MENU,show_level = 2).lower()
-
+    menu_program = menu_manager(PATH_CONFIG)
+    menu_logistic = menu_program.menu_by_global_numbers(['1','2','3','4','5','7','8','QQ','ZZ','MN'])
+    #-------------------------------------------------------# ASK MENU
+    return menu_program.ask_input(menu_logistic,button_text='Danh sách menu chương trình:')
+    
 
 def log_user_action(action):
 
@@ -268,18 +260,19 @@ def main():
     global DATA_TON_KHO , PATH_DATA_TON_KHO , DATA_NAME_TON_KHO , PATH_DATA_VTTB_TON_KHO_EXIST
     global DATA_COMBINE , PATH_DATA_COMBINE , DATA_NAME_COMBINE , PATH_DATA_VTTB_COMBINE_EXIST
     global DATA_COMBINE_TRA_CUU, PATH_DATA_COMBINE_TRA_CUU, DATA_NAME_COMBINE_TRA_CUU , PATH_DATA_VTTB_COMBINE_TRA_CUU_EXIST
-    global NAME_DATA_EDITOR_MAIN,NAME_DATA_SELECTOR,NAME_DATA_BUILDER
-    global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
     
-    # START PROGRAM
-    start_program()    
+    global PATH_CONFIG , MENU_PROGRAM        
+    #----------------------------------------------------#  SETUP PANDAS
+    pd.set_option('display.max_rows', 0)
+    pd.set_option('display.max_columns', 30)
+    pd.set_option('display.width', None)
+    pd.set_option('display.max_colwidth', 30)
+
+    #----------------------------------------------------# START PROGRAM
+    ASK_MENU = start_program()
+    
     while ASK_MENU != "qq":
         spinWaiting(BREAKER)
-        #----------------------------------------------------#  SETUP PANDAS
-        pd.set_option('display.max_rows', 0)
-        pd.set_option('display.max_columns', 30)
-        pd.set_option('display.width', None)
-        pd.set_option('display.max_colwidth', 30)
         #----------------------------------------------------#  SHOW SUB MENU
         if ASK_MENU == "1":
             ASK_MENU = show_menu_tree_view(PROMP_MAIN_MENU,level=2,keep_group = '1')

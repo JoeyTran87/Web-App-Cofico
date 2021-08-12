@@ -333,7 +333,7 @@ class menu_manager():
         menu_df.index = range(len(menu_df.index))
         for i in menu_df.index:
             if len(menu_df.iloc[i]['name']) > 0:
-                print(f"\t[{menu_df.iloc[i]['item_number']}]\t{menu_df.iloc[i]['name']}")
+                print(f"\t[{menu_df.iloc[i]['global_number']}]\t{menu_df.iloc[i]['name']}")
         ask = input(f"{promp}\n{USER_INPUT_PREFIX}")
         return ask
 
@@ -366,6 +366,6 @@ if __name__ == '__main__':
     
     # print(menu.menu_combine)
     # print(menu.menu_by_global_number('800'))
-    menu.ask_input(menu.menu_by_global_number('800'))
+    menu.ask_input(menu.menu_by_global_number('1'))
     # print(menu.menu_by_global_numbers(['800','801']))
-    menu.ask_input(menu.menu_by_global_numbers(['800','801']))
+    menu.ask_input(menu.menu_by_global_numbers(['1','2']))

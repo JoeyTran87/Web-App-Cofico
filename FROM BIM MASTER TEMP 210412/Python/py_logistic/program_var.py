@@ -51,31 +51,39 @@ SUB_FOLDER_CONFIG = "configures"
 #--------------------------------------------------#
 # CONFIGURER
 #--------------------------------------------------#
-NAME_DATA_EDITOR_MAIN = 'menu_data_main'
-NAME_DATA_SELECTOR = 'menu_data_selector'
-NAME_DATA_BUILDER = 'menu_data_builder'
-#-----------------------------------------------------# Main menu
-PATH_CONFIG_DATA_EDITOR_MAIN = f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_EDITOR_MAIN}.txt"
-#-----------------------------------------------------# Menu Data SELECTOR
-PATH_CONFIG_DATA_SELECTOR =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_SELECTOR}.txt"
-#-----------------------------------------------------# Data Builder
-PATH_CONFIG_DATA_BUILDER =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_BUILDER}.txt"
+# NAME_DATA_EDITOR_MAIN = 'menu_data_main'
+# NAME_DATA_SELECTOR = 'menu_data_selector'
+# NAME_DATA_BUILDER = 'menu_data_builder'
+# #-----------------------------------------------------# Main menu
+# PATH_CONFIG_DATA_EDITOR_MAIN = f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_EDITOR_MAIN}.txt"
+# #-----------------------------------------------------# Menu Data SELECTOR
+# PATH_CONFIG_DATA_SELECTOR =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_SELECTOR}.txt"
+# #-----------------------------------------------------# Data Builder
+# PATH_CONFIG_DATA_BUILDER =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_BUILDER}.txt"
 
-MENU_DATA_EDITOR_MAIN = None
-MENU_DATA_SELECTOR = None
-MENU_DATA_BUILDER = None
+# MENU_DATA_EDITOR_MAIN = None
+# MENU_DATA_SELECTOR = None
+# MENU_DATA_BUILDER = None
 
-def update_config():
-    """"""
-    global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
-    """"""
+# def update_config():
+#     """"""
+#     global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
+#     """"""
     
-    PATH_CONFIG_DATA_EDITOR_MAIN = f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_EDITOR_MAIN}.txt"
-    PATH_CONFIG_DATA_SELECTOR =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_SELECTOR}.txt"
-    PATH_CONFIG_DATA_BUILDER =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_BUILDER}.txt"
+#     PATH_CONFIG_DATA_EDITOR_MAIN = f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_EDITOR_MAIN}.txt"
+#     PATH_CONFIG_DATA_SELECTOR =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_SELECTOR}.txt"
+#     PATH_CONFIG_DATA_BUILDER =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_BUILDER}.txt"
+#--------------------------------------------------#
+# CONFIGURER version 2
+#--------------------------------------------------#
+PATH_CONFIG = 'configures\\configure.xlsx'
+MENU_PROGRAM = None
+
 #-------------------------------------------------------------------------------# 
 #-------------------------------------------------------------------------------# 
 #-------------------------------------------------------------------------------# 
+
+
 #-------------------------------------------------------------------------------# 
 #-------------------------------------------------------------------------------# 
 
