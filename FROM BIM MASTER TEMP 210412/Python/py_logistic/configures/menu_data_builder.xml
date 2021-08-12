@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<data>
+  <row>
+    <index>0</index>
+    <group_number>81</group_number>
+    <number_order>0</number_order>
+    <number>810</number>
+    <name>Chọn [đường dẫn file] Excel dữ liệu</name>
+    <discription>NA</discription>
+    <tips>NA</tips>
+    <warning>Đường dẫn không tồn tại</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>1</index>
+    <group_number>81</group_number>
+    <number_order>1</number_order>
+    <number>811</number>
+    <name>Chọn [tên Sheet] Excel</name>
+    <discription>NA</discription>
+    <tips>Chỉ nhập tên 1 sheet</tips>
+    <warning>[Tên sheet] không đúng</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>2</index>
+    <group_number>81</group_number>
+    <number_order>2</number_order>
+    <number>812</number>
+    <name>Nhập số lượng Cột dữ liệu tối đa</name>
+    <discription>NA</discription>
+    <tips>int</tips>
+    <warning>Nhập sai hoặc Số quá lớn, Mặc định được áp dụng (10)</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>3</index>
+    <group_number>81</group_number>
+    <number_order>3</number_order>
+    <number>813</number>
+    <name>[Xem xét] dữ liệu đã tải</name>
+    <discription>NA</discription>
+    <tips>NA</tips>
+    <warning>NA</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>4</index>
+    <group_number>81</group_number>
+    <number_order>4</number_order>
+    <number>814</number>
+    <name>Chọn [SỐ DÒNG] làm TIÊU ĐỀ CỘT</name>
+    <discription>NA</discription>
+    <tips>Là dòng Vị trí trước Dòng dữ liệu đầu tiên muốn xây dựng (chú ý) chỉ số dòng ở [Cột biên] bên trái</tips>
+    <warning>Nhập sai, hoặc có lỗi xảy ra,Mặc định được áp dụng (0)</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>5</index>
+    <group_number>81</group_number>
+    <number_order>5</number_order>
+    <number>815</number>
+    <name>Chọn [SỐ + THỨ TỰ ] các [CỘT] dữ liệu [để xây dựng]</name>
+    <discription>NA</discription>
+    <tips>Dùng Dấu Phẩy ngăn cách các chỉ số cột(chú ý) chỉ số cột ở [Dòng ]dữ liệu cuối Bảng Nhập sai, hoặc có lỗi xảy ra,Mặc định được áp dụng (toàn bộ cột)</tips>
+    <warning>NA</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>6</index>
+    <group_number>81</group_number>
+    <number_order>6</number_order>
+    <number>816</number>
+    <name>Chọn [SỐ CỘT] sẽ giúp [LOẠI BỎ GIÁ TRỊ TRỐNG]</name>
+    <discription>NA</discription>
+    <tips>Nhập số hiệu 1 cột (vd:0);Chọn Tất cả cột (nhập A); Dùng Dấu Phẩy Chọn nhiều cột (vd: 0,1,2)</tips>
+    <warning>Nhập sai, hoặc có lỗi xảy ra</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>7</index>
+    <group_number>81</group_number>
+    <number_order>7</number_order>
+    <number>817</number>
+    <name>Thiết lập [Tên cột dữ liệu]</name>
+    <discription>NA</discription>
+    <tips>[Enter] để Bỏ qua; [Nên] tận dụng các tên cột hiện hữu; Khai báo đủ [Số lượng Cột]</tips>
+    <warning>Nhập sai, hoặc có lỗi xảy ra</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>8</index>
+    <group_number>81</group_number>
+    <number_order>8</number_order>
+    <number>818</number>
+    <name>[Xem xét] và [Xác nhận] dữ liệu kết quả</name>
+    <discription>NA</discription>
+    <tips>NA</tips>
+    <warning>NA</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+  <row>
+    <index>9</index>
+    <group_number>81</group_number>
+    <number_order>9</number_order>
+    <number>819</number>
+    <name>Xuất dữ liệu cơ sở</name>
+    <discription>NA</discription>
+    <tips>Có 2 phương pháp Ghi [Đè] và [Nối tiếp]</tips>
+    <warning>NA</warning>
+    <path_source_file_absolute>NA</path_source_file_absolute>
+    <path_source_file_relative>.\NA\NA</path_source_file_relative>
+  </row>
+</data>

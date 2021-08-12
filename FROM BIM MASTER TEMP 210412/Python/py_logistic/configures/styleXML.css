@@ -1,0 +1,17 @@
+configurer{
+    color: white;
+    background-color : gray;
+    width: 100%;
+}
+process_number, process_title{
+    color: green;
+    font-size : 40px;
+    background-color : powderblue;
+}
+process_tips,process_exception,child_description, child_tips, child_exception, child_data_source_path_absolute, child_data_source_path_relative {
+    display : block;
+}
+child_index ,child_number,child_name{
+    font-size : 25px;
+    font-weight : bold;
+}

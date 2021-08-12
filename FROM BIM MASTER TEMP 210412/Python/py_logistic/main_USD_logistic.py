@@ -22,6 +22,7 @@ from program_var import *
 from handle_data_user import *
 from main_tra_cuu_VTTB_ke_hoach import *
 from main_database_VTTB import *
+from main_program_configure import menu_program
 
 #----------------------------------------------------------------------------------#
 #----------------------------------------------------------------------------------#
@@ -143,8 +144,13 @@ def start_program():
     global DATA_NAME_COMBINE,DATA_COMBINE,PATH_DATA_COMBINE,PATH_DATA_VTTB_COMBINE_EXIST
     global DATA_NAME_COMBINE_TRA_CUU,DATA_COMBINE_TRA_CUU,PATH_DATA_COMBINE_TRA_CUU,PATH_DATA_VTTB_COMBINE_TRA_CUU_EXIST
     global DATA_LIST, DATA_PATH_LIST,DATA_PATH_EXIST_LIST
+    global NAME_DATA_EDITOR_MAIN,NAME_DATA_SELECTOR,NAME_DATA_BUILDER
+    global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
+    global MENU_DATA_EDITOR_MAIN ,MENU_DATA_SELECTOR,MENU_DATA_BUILDER
     
-    # ASK DIR ROOT & USERNAME & SAY WELCOME
+
+
+    #-------------------------------------------------------# ASK DIR ROOT & USERNAME & SAY WELCOME
     spinWaiting(BREAKER)
     while PATH_ROOT_DIR_EXIST == False:
         PATH_ROOT_DIR = input(f"\tVui lòng Chọn đường dẫn Thư mục gốc:{USER_INPUT_PREFIX} ")
@@ -162,7 +168,7 @@ def start_program():
     USER_NAME = input(f"\tVui lòng cho biết TÊN của bạn:{USER_INPUT_PREFIX} ").upper()
     TIME_START = time.strftime("%y%m%d %H%M%S",time.localtime(time.time()))       
 
-    # TẠO DỮ LIỆU NGƯỜI DÙNG
+    #-------------------------------------------------------# TẠO DỮ LIỆU NGƯỜI DÙNG
     PATH_USER_LOG = f"{PATH_ROOT_DIR}\\{SUBFOLDER_DATA_USER}\\{USER_NAME}-{TIME_START}.txt"
     log_user_action(f"PATH_ROOT\t{PATH_ROOT_DIR}")
     log_user_action(f"USER_NAME\t{USER_NAME}")
@@ -221,6 +227,12 @@ def start_program():
     data_refresh()
     logging.debug('Data of Material and Equipmetn loaded DONE')
     print(BREAKER)
+    
+    #-------------------------------------------------------# CONFIGURER
+    update_config()
+    MENU_DATA_EDITOR_MAIN = menu_program(PATH_CONFIG_DATA_EDITOR_MAIN)
+    MENU_DATA_BUILDER = menu_program(PATH_CONFIG_DATA_BUILDER)
+    MENU_DATA_SELECTOR = menu_program(PATH_CONFIG_DATA_SELECTOR)
 
     # ASK ACTION
     ASK_MENU = show_menu_tree_view(PROMP_MAIN_MENU,show_level = 2).lower()
@@ -256,6 +268,8 @@ def main():
     global DATA_TON_KHO , PATH_DATA_TON_KHO , DATA_NAME_TON_KHO , PATH_DATA_VTTB_TON_KHO_EXIST
     global DATA_COMBINE , PATH_DATA_COMBINE , DATA_NAME_COMBINE , PATH_DATA_VTTB_COMBINE_EXIST
     global DATA_COMBINE_TRA_CUU, PATH_DATA_COMBINE_TRA_CUU, DATA_NAME_COMBINE_TRA_CUU , PATH_DATA_VTTB_COMBINE_TRA_CUU_EXIST
+    global NAME_DATA_EDITOR_MAIN,NAME_DATA_SELECTOR,NAME_DATA_BUILDER
+    global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
     
     # START PROGRAM
     start_program()    
@@ -440,14 +454,18 @@ def main():
         elif ASK_MENU == "7.2":
             #----------------------------------------------------# BIÊN TẬP DỮ LIỆU
             print(BREAKER)
-            show_heading_1('trình biên tập dữ liệu vttb\n[dANH MỤC] - [TỒN KHO] - [TỔNG HỢP]')
+            show_heading_1('trình biên tập dữ liệu vttb\n[dANH MỤC] - [TỒN KHO] - [TỔNG HỢP]')           
+            
+            #---------------------------------------------------#   DATA SELECTING
+            path_data = ask_data(MENU_DATA_SELECTOR)
+            
             #---------------------------------------------------# BIÊN TẬP DỮ LIỆU [DANH MỤC] VTTB
             ask_skip = input(f'\t Bạn sắp biên tập Dữ liệu [Danh mục] VTTB, bỏ qua chọn n (y/n):{USER_INPUT_PREFIX} ')
             if ask_skip.lower() == 'y':
                 spin_three_dots('Backup data ')              
                 data_archive(PATH_DATA_VTTB)
                 spinWaiting(BREAKER)             
-                DATA_VTTB = data_builder(PATH_ROOT_DIR,SUB_DATA_VTTB,DATA_NAME,menu_sub_update_by_excel,header = 'biên tập dữ liệu [danh mục] vttb')
+                DATA_VTTB = data_builder(PATH_ROOT_DIR,path_data = path_data)
                 spin_three_dots('Backup data ')   
                 data_archive(PATH_DATA_VTTB_TRA_CUU)                
                 spinWaiting(BREAKER)           

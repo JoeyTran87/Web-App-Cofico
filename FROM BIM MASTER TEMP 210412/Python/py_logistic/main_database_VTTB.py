@@ -6,95 +6,17 @@
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
-import os,shutil,re
+import os,shutil
 import pandas as pd
 import numpy as np
 from pandas.core.frame import DataFrame
-from program_var import BREAKER,START_END_LINE,USER_INPUT_PREFIX
+from program_var import *
 from handle_search import *
 from handle_cmd import *
 from handle_excel_files import *
+from handle_decor_func import *
+from main_program_configure import menu_program
 
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-# GLOBAL
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-class menu_program():
-    def __init__(self,path,dir_root = '.') -> any:
-        self.menu_name_file_ext = str(path).split('.')[-1]
-        self.menu_file_name  = str(path).split('\\')[-1][:-len(self.menu_name_file_ext)-1]
-        #----------------------------------------------# tải Tên chương trình  + Mô tã + Menu từ file thiết lập menu 
-        self.menu_name,  self.menu_description, menu = read_configure_file(path)
-        #----------------------------------------------# clean data menu
-        menu.dropna(subset = [menu.columns[2]],inplace = True)
-        menu = menu.fillna('NA')
-        self.menu_col_count = len(menu.columns)
-        #----------------------------------------------# insert new column + reorder columns
-        # col = menu['Group_Number']+menu['Number']
-        # menu.drop(columns = ['Group_Number','Number'],inplace = True)
-        # menu = pd.DataFrame(col,columns = ['Merge_Number']).join(menu)        
-        menu['Merge_Number'] = menu['Group_Number']+menu['Number']
-        #----------------------------------------------# load Path Source
-        # col_path = dir_root+'\\'+menu['Source_Sub_Dir']+'\\'+menu['Source_Name']
-        # menu.drop(columns = ['Source_Sub_Dir','Source_Name'],inplace = True)
-        # menu = pd.DataFrame(col_path,columns = ['Path_Source']).join(menu)
-        menu['Path_Source']= dir_root+'\\'+menu['Source_Sub_Dir']+'\\'+menu['Source_Name']
-        #----------------------------------------------# final Menu data
-        self.menu = menu
-        self.menu_list = [f"{self.menu.iloc[m][2]}" for m in self.menu.index]
-        self.menu_numbers = [f"{self.menu.iloc[m][self.menu_col_count]}" for m in self.menu.index]
-        self.menu_path_source_list = [f"{self.menu.iloc[m][self.menu_col_count+1]}" for m in self.menu.index]
-        #----------------------------------------------# load TIPS
-        self.tips_KS = HOTKEYS_GENERAL
-
-        #----------------------------------------------# TEST QUICK - XÓA KHI TEST XONG
-        # print(self.menu_path_source_list)
-
-    #-------------------------------------------------------------# SHOW
-    def show_title(self) -> str:
-        show_heading_1(self.menu_name)
-    def show_title_3(self) -> str:
-        show_heading_3(self.menu_name)
-    def show_description(self,button_text = 'Mô tả/ Description:') -> str:
-        print(button_1(button_text))
-        print_text_box_L(self.menu_description)
-    def show_tips(self,button_text = 'Mẹo/Tips:') -> str:
-        print(button_1(button_text))
-        print_text_box_L(self.tips_KS)
-    #-------------------------------------------------------------# GET
-    def get_path(self,index):
-        return self.menu.iloc[index][self.menu_col_count+1]
-    #-------------------------------------------------------------# ASK
-    def ask_menu(self,button_text = 'Menu Steps:',promp = 'Vui lòng nhập số hiệu') -> str:
-        print(button_1(button_text))
-        ask =  ask_input_2(self.menu_list,input_prefix = f"{promp}\n{USER_INPUT_PREFIX}")
-        print(BREAKER)
-        return ask
-    def ask_step(self,index,promp = '',pre_promp = 'Vui lòng'):
-        step = [index,self.menu.iloc[index][2]]
-        return input(f"[Bước {step[0]}] {pre_promp} {step[1]}\n{promp}\n{USER_INPUT_PREFIX}")
-    #-------------------------------------------------------------# ASK
-    def warning(self,index,promp = 'Vui lòng thử lại'):
-        note = self.menu.iloc[index][4]
-        # print(f"[!] {note} [!] {promp}")
-        print_text_box_L(f"{note}\n{promp}",hoz = '_ ', ver = '!')
-
-
-        
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
 #-----------------------------------------------------# MENU LIST : THỨ TỰ CẦN ĐƯỢC GIỮ CỐ ĐỊNH KO ĐỔI
 tip_subprogram = f"\t"
 menu_data_main = [
@@ -108,11 +30,6 @@ menu_data_main = [
     'Danh sách [Top] Vật tư thiết bị',
     'Biểu đồ [Top] Vật tư thiết bị',
 ]
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
-#-----------------------------------------------------#
 #-----------------------------------------------------#
 #-----------------------------------------------------#
 #-----------------------------------------------------#
@@ -161,48 +78,163 @@ def main_data(path_root,sub_dir,dat_name) -> any:
     # if not os.path.exists(path_data):
     #     warning(f"Đường dẫn tập tin dữ liệu [Không tồn tại]\n\t{path_data}")
     #     return
-    path_menu_conf = f"{path_root}\\{SUB_CONFIGURE}\\menu_data_main.txt"
+    #-----------------------------------------------------# Main menu
+    path_menu_conf = f"{path_root}\\{SUB_FOLDER_CONFIG}\\menu_data_main.txt"
     menu = menu_program(path_menu_conf)
-    menu.show_title()
+    #-----------------------------------------------------# Menu Data
+    path_data_conf =  f"{path_root}\\{SUB_FOLDER_CONFIG}\\menu_data_selector.txt"
+    menu_data = menu_program(path_data_conf)
+
+    menu.show_title_3()
     menu.show_description()
     menu.show_tips()
-    ask_menu = menu.ask_menu()
-    while ask_menu != 'q_' and ask_menu != 'z_' and ask_menu != 'qq' and ask_menu != 'zz': 
-        flag_loop = True
-        while flag_loop:
-            #-----------------------------------------------------# User chọn Data đe bien tap
-            path_data_conf =  f"{path_root}\\{SUB_CONFIGURE}\\menu_data_types.txt"
-            menu_data = menu_program(path_data_conf)
-            #-----------------------------------------------------# bien tap du lieu bang file excel
-            if ask_menu == "0":
-                while not os.path.exists(path_data):
-                    path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))                    
-                    data_builder(path_root,sub_dir,dat_name,menu_sub_update_by_excel,path_data=path_data)
-                    break
+    while True:
+        try:
+            ask_menu = menu.ask_menu(button_text='Menu chương trình')
+            if 'Interrupter' in ask_menu or type(ask_menu) == bool:
+                raise Exception('Interrupted')
+                continue
+            if int(ask_menu):
+                if not int(ask_menu) in range(len(menu.menu_list)):
+                    print_text_box_R('Nhập sai. Vui lòng nhập đúng số hiệu menu',hoz='- ',ver='!')        
+            #-----------------------------------------------------# BUILD DATA TỪ EXCEL
+            elif ask_menu == "0":
+                #-----------------------------------------------------# chọn dữ liệu đê bien tap                
+                path_data = ask_data(menu_data)                
+                while True:
+                    try:
+                        data_builder(path_root,path_data=path_data)[1]
+                        print_text_box_L('Hoàn tất biên tập dữ liệu')                            
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
             elif ask_menu == "1":
-                while not os.path.exists(path_data):
-                    path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
-                    change_df_column_names(path_data)
-                    break
-                flag_loop = False
+                #-----------------------------------------------------# chọn dữ liệu đê bien tap                
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        change_df_column_names(path_data)
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+
             elif ask_menu == "2":
-                pass
-            ask_menu = menu.ask_menu()
-    if ask_menu == 'q_':
-        return
-    elif ask_menu == 'z_':
-        spin_three_dots('Bạn đang khởi động lại tiến trình')
-        main_data(path_root,sub_dir,dat_name,menu)
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+            elif ask_menu == "3":
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+            elif ask_menu == "4":
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+            elif ask_menu == "5":
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+            elif ask_menu == "6":
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+            elif ask_menu == "7":
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+            elif ask_menu == "8":
+                path_data = ask_data(menu_data)     
+                while True:
+                    try:
+                        path_data = menu_data.get_path(int(menu_data.ask_menu(button_text='Bạn chọn dữ liệu nào sau đây:')))
+                        # 
+                    except:
+                        print_text_box_L('Có lỗi trong quá trình biên tập, Vui lòng thử lại',hoz='- ',ver='!')
+                        continue
+        except Exception as ex:
+            if ex.args[0] == 'Interrupted':
+                ask_menu = ask_menu.split(':')[-1]
+                if ask_menu.lower() == 'qq': # quit = QQ
+                    print_text_box_R('Bạn chọn [Thoát] chương trình\nChương trình đang thoát\nHẹn gặp lại bạn lần sau',hoz= ' - ')
+                    quit()
+                elif ask_menu.lower() == 'zz': # restart = ZZ
+                    print_text_box_R('Bạn chọn [Restart] chương trình\nChương trình đang Khởi động lại',hoz=' - ')
+                    continue
+                elif ask_menu.lower() == 'q_': # reset = Q_
+                    print_text_box_R('Bạn chọn [Thoát]/ [Bỏ qua] tiến trình\nLưu ý: Có thể các bước sau sẽ lỗi thì thiếu đầu vào',hoz=' - ')
+                    continue
+                elif ask_menu.lower() == 'z_': # reset = Q_
+                    print_text_box_R('Bạn chọn [Backward]/Quay lại 1 bước tiến trình\nChương trình đang quay lại 1 bước',hoz=' - ')
+                    continue
+                elif ask_menu == True or ask_menu == False : # output Boolean
+                    menu.show_warning()
+                    continue
+            else:
+                menu.show_warning()
+        
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
+    
+
+def ask_data(menu_data):
+    """Hỏi user chọn data, trả về Đường dẫn tồn tại hoặc None"""
+    path_data = None
+    while True:
+        try:
+            menu_data.show_title_3()
+            ask_data = menu_data.ask_menu(button_text='Vui lòng chọn dữ liệu để biên tập:',breaker = BREAKER_SEC)
+            if 'Interrupter' in ask_data or type(ask_data) == bool:
+                raise Exception('Interrupted',ask_data)
+                continue
+            path_data = menu_data.get_path(int(ask_data))
+            if not int(ask_data) and not int(ask_data) in range(len(menu_data.menu_list)):
+                raise Exception('Wrong input',ask_data)
+            else:
+                print(f'Bạn sắp biên tập dữ liệu {path_data}')
+                break
+        except Exception as ex:
+            if ex.args[0] == 'Interrupted':
+                ask_data = ask_data.split(':')[-1]
+                if ask_data.lower() == 'qq': # quit = QQ
+                    print_text_box_R('Bạn chọn [Thoát] chương trình\nChương trình đang thoát\nHẹn gặp lại bạn lần sau',hoz= ' - ')
+                    quit()
+            else:
+                print_text_box_L('Nhập sai số hiệu\nVui lòng thử lại',hoz='- ',ver='!')
+    return path_data
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
@@ -263,220 +295,231 @@ def data_lookup_builder(data,path,column_name) -> pd.DataFrame: # DU LIEU TRA CU
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-def data_builder(path_root,sub_dir,dat_name,menu,path_data=None) -> pd.DataFrame:
+
+# @loop_flow_1()
+def data_builder(path_root,path_data=None) -> pd.DataFrame:
     """### Description
     - Phương thức Xử lí dữ liệu
     Sử dụng Đại trà, không cụ thể cho loại dữ liệu nào
     ### Input:
-    - path_root (str) --> dirpath
-    - sub_dir (str) --> folder name
-    - data_name (str) --> file path
-    - header (str)
-    - menu (list) : ['','','']"""
+    - path_root (str) --> dirpath"""
+    
+    df_copy = []
     path_data_last = ''
-    if path_data and os.path.exists(path_data):
-        path_data_last = path_data
-    else:
-        path_data_last = f"{path_root}\\{sub_dir}\\{dat_name}.json"
     # ----------------------------------------------------------# Setup PANDAS
     # pd.set_option('display.max_rows', None)                       
     # pd.set_option('display.max_columns', 10)
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', 30)
-
-    # ----------------------------------------------------------# show menu
-    menu_path = f"{path_root}\\{SUB_CONFIGURE}\\menu_data_builder.txt"
-    menu_ = menu_program(menu_path)
-    menu_.show_title_3()
-    menu_.show_description()
-    # menu_.show_tips()
-    ask_menu = menu_.ask_menu(promp = 'Bạn sẵn sàng? (y/n)')    
-    # ask_menu = show_menu_1(header,'Các bước bạn sẽ thực hiện',menu,f"{USER_INPUT_PREFIX} Bạn sẵn sàng? (y/n)")
-
-    if ask_menu.lower() == 'y':
-        # ----------------------------------------------------------# ask : Chọn [đường dẫn file] Excel dữ liệu
-        path_data=menu_.ask_step(0)
-        while not os.path.exists(path_data):
-            menu_.warning(0)
-            path_data = menu_.ask_step(0)
-        # ----------------------------------------------------------# show tên sheet excel
-        print(button_1("Danh sách các [Sheet]:"))
-        sheets = show_excel_sheet(path_data)
-        # ----------------------------------------------------------# ask : Chọn [tên Sheet] Excel
-        flag_sheet = False 
-        while flag_sheet == False:
-            excel_sheet_name = menu_.ask_step(1)
-            try:
-                # excel_sheet_name = menu_.ask_step(1)
-                # if excel_sheet_name.lower() == 'q_':
-                #     return
-                # elif excel_sheet_name.lower() == 'r_':
-                #     flag_sheet = False   
-                # else:
-                flag_sheet = excel_sheet_name in sheets
-            except:
-                menu_.warning(1)
-                flag_sheet = False
-                
-        ask_max_cols = 10
-        tips= ''
+          
+    # ----------------------------------------------------------# Load menu = Verify menu data
+    menu_path = f"{path_root}\\{SUB_FOLDER_CONFIG}\\menu_data_builder.txt"
+    if os.path.exists(menu_path):
+        menu_ = menu_program(menu_path)
+        menu_.show_title_3()
+        menu_.show_description()
+    else:
+        return
+    # ----------------------------------------------------------# Load menu = Verify Data soruce
+    if not path_data or not os.path.exists(path_data):
+        print_text_box_L('Không tồn tại nguồn dữ liệu')
+        return
+    # ----------------------------------------------------------# LOOP START
+    while True:        
         try:
-            action = 'Chọn [số lượng] cột [tối đa]'
-            ask_max_cols = int(input (f'\t{action}{USER_INPUT_PREFIX}'))
-        except:
-            warning_1(action,f"{promp_try}\n\tTrình tạo Dữ liệu vẫn tiếp tục bước tiếp theo\n\tXử dụng giá trị mặc định là {ask_max_cols}")
-            pass
-        pd.set_option('display.max_columns', ask_max_cols)
-        if ask_max_cols > 10:
-             pd.set_option('display.max_colwidth', 10)
-        
-        try:
-            df = pd.read_excel(path_data,excel_sheet_name)#,dtype='string')
+            path_data_last = path_data
+            menu_.ask_menu(promp = 'Enter để tiếp tục',button_text='Đấy là toàn bộ quá trình bạn sẽ thực hiện:')
+            
+            # ----------------------------------------------------------# ask : Chọn [đường dẫn file] Excel dữ liệu
+            while True:
+                try:
+                    path_data_excel = menu_.ask_step(0)
+                    if not os.path.exists(path_data_excel):
+                        raise Exception('Path not exist')
+                    # ----------------------------------------------------------# show tên sheet excel
+                    print(button_1("Danh sách các [Sheet]:"))
+                    sheets = show_excel_sheet(path_data_excel)
+                    break
+                except:
+                    menu_.warning(0)
+            # ----------------------------------------------------------# ask : Chọn [tên Sheet] Excel
+            
+            while True:
+                try:
+                    excel_sheet_name = menu_.ask_step(1,pre_promp='Vui lòng')
+                    if not excel_sheet_name in sheets:
+                        raise Exception('Sheet not exist')
+                    break
+                except Exception as ex:
+                    menu_.warning(1)
+
+            # ----------------------------------------------------------# Thiết lập số lượng cột tôi đa
+            ask_max_cols = 10
+            while True:
+                try:
+                    ask_max_cols = int(menu_.ask_step(2))
+                    if ask_max_cols > 10:
+                        menu_.warning(2)                        
+                        ask_max_cols = 10      
+                    pd.set_option('display.max_columns', ask_max_cols)
+                    break
+                except:
+                    menu_.warning(2)
+
+            # ----------------------------------------------------------# Tải dữ liệu excel
+            df = pd.read_excel(path_data_excel,excel_sheet_name)#,dtype='string')
             df = df[df.columns[0:ask_max_cols]]
             df_copy = insert_column_index_row(df)
-        except:
-            print(f"\t[!]Có lỗi gì đó xảy ra, có thể bạn đã thực hiện thao tác {promp_try}\n\tTrình xử lí sẽ thoát về Main Menu")
-            return
-
-        print(f"\t[{2}] {menu[2]}: {USER_INPUT_PREFIX} ")
-        print(BREAKER)
-        print(df_copy)
-        print(BREAKER)
-
-        row_header = int(input((f"\t[{3}] {menu[3]}: {USER_INPUT_PREFIX} ")))
-        print(BREAKER)
-        
-        flag_columns = False
-        columns = []
-        tips = '\n\t\tChọn 1 cột--Nhập--1 số nguyên\n\t\tChọn nhiều cột--Dùng--Dấu Phẩy [,]\n\t\tHủy tiến trình--Nhập--[Q_]'
-        while flag_columns != True:
-            columns = ask_input_1(4,menu[4],tips,input_prefix=USER_INPUT_PREFIX)            
-            if columns.lower() == 'q_':
-                return 
-            try:
-                columns = [int(i) for i in columns.replace(" ","").split(',')]
-                flag_columns = True
-            except:
-                warning_1(menu[4],f"{promp_try}\n\t[Tips] Có thể bạn đã nhập [không phải] là số Nguyên, hay Danh sách số nguyên")
-                flag_columns = False
-                pass
-
-
-        print(BREAKER)
-        
-        flag_column_drop = False
-        column_drop = columns[0] # mặc định là cột đầu tiên
-        tips = '\n\t\tChọn 1 cột--Nhập--1 số nguyên\n\t\tChọn tất cả cột--Nhập--A\n\t\tChọn nhiều cột--Dùng--Dấu Phẩy [,]\n\t\tHủy tiến trình--Nhập--[Q_]'            
-        while flag_column_drop != True:            
-            column_drop = ask_input_1(5,menu[5],tips, input_prefix=USER_INPUT_PREFIX)
-            if column_drop.lower() == 'a':
-                column_drop = columns
-                flag_column_drop = True
-                break
-            elif column_drop.lower() == 'q_':
-                return            
-            else:
-                try:
-                    column_drop = [int(i) for i in column_drop.replace(" ","").split(',')]                
-                    flag_column_drop = set(column_drop).issubset(columns)
-                except:
-                    warning_1(menu[5],f"{promp_try}\n\t[Tips] Có thể bạn đã nhập [không phải] là số Nguyên, hay Danh sách số nguyên")
-                    flag_column_drop = False
-                    break        
-        
-        spinWaiting(BREAKER)
-        #-------------------------------------------------------------------# Xử lí DF = Lọc cột giữ lai + Bỏ NA
-        df_copy = None
-        try: 
-            df_copy = pd.read_excel(path_data,excel_sheet_name
-                                    ,header = row_header+1,dtype='string'
-                                    ,usecols=columns)
+            # ----------------------------------------------------------# User review
+            print(button_1('Tải Dữ liệu hoàn tất:'),'\n',df_copy)
+            print(BREAKER_SEC)
+            menu_.ask_step(3,pre_promp='Sau khi',post_promp='Enter để tiếp tục')
             
-            if type(column_drop) == int:
-                df_copy.dropna(subset=[df.columns[column_drop]],inplace=True)
-            elif type(column_drop) == list:
-                # transfer to New DF column indexs  
-                new_column_drop = []
-                for  i,v in enumerate(columns):
-                    for  j in column_drop:
-                        if j == v:
-                            new_column_drop.append(i) 
-                df_copy.dropna(subset=[df_copy.columns[c] for c in new_column_drop],inplace=True)
+            # ----------------------------------------------------------# Chọn dòng Tiêu đề Cột
+            row_header = 0
+            while True:
+                try:
+                    row_header = int(menu_.ask_step_w_tips(4))
+                    if df.iloc[row_header].to_list():
+                        break
+                except:
+                    menu_.warning(4)
+            # ----------------------------------------------------------# Chọn các cột dữ liệu
+            columns = []
+            while True:
+                try:
+                    columns = menu_.ask_step_w_tips(5)
+                    columns = [int(i) for i in columns.replace(" ","").split(',')]
+                    if [df[df.columns[i]] for i in columns]: 
+                        break                    
+                except:
+                    menu_.warning(5)
+
+
+            # ----------------------------------------------------------# Chọn cột dữ liệu Lọc NA
+            column_drop = columns[0] # mặc định là cột đầu tiên
+            while True: #flag_column_drop != True:     
+                try:       
+                    column_drop = menu_.ask_step_w_tips(6)
+                    if column_drop.lower() == 'a':
+                        column_drop = columns
+                    else:
+                        column_drop = [int(i) for i in column_drop.replace(" ","").split(',')]                
+                        if not set(column_drop).issubset(columns):
+                            raise Exception('Lỗi')
+                    
+                    #-------------------------------------------------------------------# Xử lí DF = Lọc cột giữ lai + Bỏ NA
+                    df_copy = None
+                    df_copy = pd.read_excel(path_data_excel,excel_sheet_name
+                                            ,header = row_header+1,dtype='string'
+                                            ,usecols=columns)
+                    
+                    if type(column_drop) == int:
+                        df_copy.dropna(subset=[df.columns[column_drop]],inplace=True)
+                    elif type(column_drop) == list:
+                        # transfer to New DF column indexs  
+                        new_column_drop = []
+                        for  i,v in enumerate(columns):
+                            for  j in column_drop:
+                                if j == v:
+                                    new_column_drop.append(i) 
+                        df_copy.dropna(subset=[df_copy.columns[c] for c in new_column_drop],inplace=True)
+                    if type(df_copy) == DataFrame:
+                        break
+                except:
+                    menu_.warning(6)
+            
+            print_text_box_L("Hoàn tất xử lí dữ liệu, Bạn sắp xem nhanh [1 phần] dữ liệu kết quả:")
+            print(df_copy.head(10))
+            
+            #-------------------------------------------------------------------# Thiết lập Tiêu đề cột
+            df_last = pd.read_json(path_data_last,orient='records')
+            column_names_last = ','.join(df_last.columns)
+            while True:
+                try:
+                    print_text_box_L(f"Bạn đang xem Danh sách [Tên cột] của dữ liệu [Hiện hữu]:")
+                    print(column_names_last)
+                    column_names_current = df_copy.columns
+                    column_names = []                
+                    column_names = menu_.ask_step_w_tips(7,post_promp = "Nhập danh sách tên cột") # input(f"\t[{6}] {menu[6]}: {USER_INPUT_PREFIX}")                
+                    column_names = column_names.split(',')                   
+                    if len(column_names) == len(column_names_current):
+                        #-------------------------------------------------------------------# Show Du lieu
+                        df_copy.columns = column_names
+                        df_copy_show =  insert_column_index_row(df_copy)
+                        print(df_copy_show)
+                        break
+                    else:
+                        raise Exception('Lỗi')
+                except Exception as ex:
+                    menu_.warning(7)                         
+
+            menu_.ask_step(8,post_promp='Enter để Xác nhận:')            
+            #-------------------------------------------------------------------# Ghi  Du lieu ra file
+            menu_write = menu_.get_step(9)
+
+            #-------------------------------------------------------------------# Fill gia1 tri NA
+            df_copy.fillna('NA',inplace= True)
+
+            data_write_file(df_copy,path_data_last,menu = menu_write)
+            # df_copy = data_write_file(df_copy,path_data_last,title=menu[8])
+            
+            break
+            
         except:
-            warning_1(menu[5],f"{promp_try} lần xử lí kế tiếp\n\tTrình tạo Dữ liệu vẫn tiếp tục bước tiếp theo")
-            pass                
-        
-        print("\tHoàn tất xử lí dữ liệu, bạn sắp [Xem nhanh] dữ liệu của bạn")
-        print(BREAKER)
-        print(df_copy.head(3))
-        print(BREAKER)
-        
-        #-------------------------------------------------------------------# Thiết lập Tiêu đề cột
-        column_names = change_new_df_column_names(path_data_last,df_copy)
-        print(BREAKER)
-        print((f"\t[{7}] {menu[7]}: {USER_INPUT_PREFIX} "))
-        print(BREAKER)
-        #-------------------------------------------------------------------# Copy show cột
-        df_copy.columns = column_names
-        df_copy_show =  insert_column_index_row(df_copy)
-        #-------------------------------------------------------------------# Show Du lieu
-        print(df_copy_show)
-        print(BREAKER)
-
-
-        #-------------------------------------------------------------------# Ghi  Du lieu ra file
-        df_copy = data_write_file(df_copy,path_data_last,title=menu[8])    
-        return df_copy
+            continue
 #-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-#-----------------------------------------------------------------------------------------------------------------------------------------#
-def data_write_file(df,path_data,title = None) -> pd.DataFrame:
-    """### Description
-    - [IO]
-    - Phương thức Ghi dữ liệu ra Tập tin
-    Sử dụng Đại trà, không cụ thể cho loại dữ liệu nào
+def data_write_file_append(df,path_data) -> pd.DataFrame:
+    """Trình xừ lí: Ghi dữ liệu ra Tập tin [Nối tiếp]
     ### Input:
     - df (DataFrame) : Dữ liệu
     - path_data (str) : đường dẫn tập tin"""
-    ask_export_data=''
-    if title:
-        ask_export_data = input((f"\t[{8}] Bạn sắp {title} (y/n)\n\t{USER_INPUT_PREFIX} "))
-    else: 
-        ask_export_data = 'y'
-    
-    if ask_export_data.lower() == 'y':
-        try:            
-            ask_append = input(f"\tBạn chọn:\n\t[1] [Nối tiếp] vào dữ liệu cũ \n\t[2]Ghi đè /thay thế dữ liệu cũ\n{USER_INPUT_PREFIX} ").lower()
-            print(BREAKER)
-            while ask_append == "1" or ask_append == "2":
-                if ask_append == "2":    
-                    #-------------------------------------------------------------------# Ghi ra JSON File    
-                    df.to_json(path_data,orient='records')
-                    print(f'\tThành công tạo dữ liệu mới: {USER_INPUT_PREFIX} {path_data}')
-                    break
-                elif ask_append == "1":
-                    df = pd.concat([df,pd.read_json(path_data,orient='records')], ignore_index=True)
-                    df.to_json(path_data,orient='records')  
-                    print('\tThành công Nối tiếp Dữ liệu')
-                    print(f'\tThành công tạo dữ liệu mới: {USER_INPUT_PREFIX} {path_data}')
-                    break
-                else:
-                    warning('Tiến trình chưa hoàn tất, vui lòng thử lại')
-                    ask_append = input(f"\tBạn chọn:\n\t[1] [Nối tiếp] vào dữ liệu cũ \n\t[2]Ghi đè /thay thế dữ liệu cũ\n{USER_INPUT_PREFIX} ").lower()                         
-        except:
-            warning(f"Có gì đó không ổn\n\tDữ liệu đã [không được ghi]\n\tTrình xử lí đang thoát [về Main Menu]")
-            pass
+    df = pd.concat([df,pd.read_json(path_data,orient='records')], ignore_index=True)
+    df.to_json(path_data,orient='records')  
+    print_text_box_L('Thành công Nối tiếp Dữ liệu')
+    print(f'[OUT] Dữ liệu mới: {path_data}')
     return df
+#-----------------------------------------------------------------------------------------------------------------------------------------#
+#-----------------------------------------------------------------------------------------------------------------------------------------#
+def data_write_file(df,path_data,title = None,menu = None) -> pd.DataFrame:
+    """Trình xừ lí: Ghi dữ liệu ra Tập tin ([Ghi đè] hoặc [Nối tiếp])
+    ### Input:
+    - df (DataFrame) : Dữ liệu
+    - path_data (str) : đường dẫn tập tin
+    - title: tên tiến trình
+    - menu: menu tiến trình"""
+    # index = 0
+    # tips = ''
+    # if type(menu) == list and len(menu)>= 2:
+    #     index = int(menu[0])
+    #     title = menu[1]
+    #     tips = menu[2]    
+    while True:
+        try:
+            ask_export_data = menu_program.ask_step_w_tips_free(menu,pre_promp='Vui lòng xác nhận (y/n) bạn muốn: ')
+            path_xml = f"{path_data.split('.json')[0]}.xml"
+            if ask_export_data ==  True:
+                ask_append = input(f"{button_1('Chọn kiểu ghi:')}:\n\t[1] [Nối tiếp] vào dữ liệu cũ \n\t[2] [Ghi đè] /thay thế dữ liệu cũ\n{USER_INPUT_PREFIX} ").lower()
+                print(BREAKER)                  
+                if ask_append == "1":
+                    df = pd.concat([df,pd.read_json(path_data,orient='records')], ignore_index=True)                    
+                    
+                    df.to_xml(path_xml)  
+                    df.to_json(path_data,orient='records')  
+
+                    print_text_box_L('Thành công Nối tiếp Dữ liệu')
+                    print(f'[OUT] Dữ liệu mới:\n{path_data}\n{path_xml}')
+                    return df
+                elif ask_append == "2":    
+                    #-------------------------------------------------------------------# Ghi ra JSON File    
+                    df.to_xml(path_xml)  
+                    df.to_json(path_data,orient='records')
+                    print(f'[OUT] Dữ liệu mới:\n{path_data}\n{path_xml}')
+                    return df
+                else:
+                    warning('Tiến trình chưa hoàn tất, vui lòng thử lại') 
+        except:
+            warning('Tiến trình chưa hoàn tất, vui lòng thử lại') 
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
@@ -514,19 +557,22 @@ def data_combine(data_1,data_2,path_combine):
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
-def change_new_df_column_names(path_data_last,df):
+def change_new_df_column_names(path_data_last,df,menu=None,step_number=0):
     """Thiết lập Tên cột dữ liệu mới cho Dữ liệu DF mới tạo"""
     #-------------------------------------------------------------------# Tiêu đề cột Dữ liêu cũ
     df_last = pd.read_json(path_data_last,orient='records')
     column_names_last = ','.join(df_last.columns)
-    tips = '[!]Bạn [Nên] sử dụng các tên đã có [nếu cần thiết] và đủ [Số lượng Cột] '
-    print(f'\t[Tên cột] của dữ liệu [Gần nhất]: \n{column_names_last}\n\t{tips}')
-    print(BREAKER)
+    if type(menu) == menu_program:
+        menu.ask_step_w_tips(step_number,post_promp = "Nhập danh sách tên cột")
+    else:
+        return
+    print_text_box_L(f"Bạn đang xem Danh sách [Tên cột] của dữ liệu [Hiện hữu]:")
+    print(column_names_last)
+
     column_names_current = df.columns
     #-------------------------------------------------------------------# Thiết lập Tiêu đề cột
     flag_names = False
-    column_names = []
-    tips = '\n\t\tChọn nhiều tên cột--Dùng--Dấu Phẩy [,]\n\t\tHủy tiến trình--Nhập--[Q_]\n\t\tReset bước này--Nhập--[R_]'            
+    column_names = []    
     while not flag_names:
         column_names = input(f"\t[{6}] {menu[6]}: {USER_INPUT_PREFIX}")
         if column_names.lower() == 'q_':
@@ -542,47 +588,51 @@ def change_new_df_column_names(path_data_last,df):
                 warning_1(menu[6],f"{promp_try}\n\t[Tips] Có thể bạn đã nhập [không] đủ số lượng cột")
                 flag_names = False
     return column_names
+
+# @loop_flow_1()
 def change_df_column_names(path_data):
-    """Đổi Tên cột dữ liệu"""
-    df = pd.read_json(path_data,orient='records')
-    #-------------------------------------------------------------------# Tiêu đề cột Dữ liêu cũ
-    column_names_current = df.columns
-    column_names_last = ','.join(column_names_current)
-    #-------------------------------------------------------------------# Thiết lập Tiêu đề cột
-    tips = 'Bạn [Nên]:\n - Sử dụng các tên đã có [nếu cần thiết]\n - Nhập đủ [Tên] theo [Số lượng Cột]\n - Ghép các tên cột với Dấu Phẩy [,]'
-    print(button_1('Tên cột'),button_1('của dữ liệu đươc tải'))
-    print(f'\t{column_names_last}')
-    print_text_box_L(tips)
-    #-------------------------------------------------------------------# Validate tên cột
-    flag_names = False
-    column_names = []        
-    while not flag_names:
-        column_names = input(f"Nhập [Tên cột] mới\n{USER_INPUT_PREFIX} :")#f"\t[{6}] {menu[6]}: {USER_INPUT_PREFIX}")
-        if column_names.lower() == 'q_':
-            return 
-        elif column_names.lower() == 'r_':
-            flag_names = False
-        else:
-            try:
-                column_names = column_names.split(',')        
-                flag_names = len(column_names) == len(column_names_current)
-                print(BREAKER)
-            except:
-                warning_1(menu[6],f"{promp_try}\n\t[Tips] Có thể bạn đã nhập [không] đủ số lượng cột")
-                warning('Tiến trình chưa hoàn tất, vui lòng thử lại')
+    try:
+        """Đổi Tên cột dữ liệu"""
+        df = pd.read_json(path_data,orient='records')
+        #-------------------------------------------------------------------# Tiêu đề cột Dữ liêu cũ
+        column_names_current = df.columns
+        column_names_last = ','.join(column_names_current)
+        #-------------------------------------------------------------------# Thiết lập Tiêu đề cột
+        tips = 'Bạn [Nên]:\n - Sử dụng các tên đã có [nếu cần thiết]\n - Nhập đủ [Tên] theo [Số lượng Cột]\n - Ghép các tên cột với Dấu Phẩy [,]'
+        print(button_1('Tên cột'),button_1('của dữ liệu đươc tải'))
+        print(f'\t{column_names_last}')
+        print_text_box_L(tips)
+        #-------------------------------------------------------------------# Validate tên cột
+        flag_names = False
+        column_names = []        
+        while not flag_names:
+            column_names = input(f"Nhập [Tên cột] mới\n{USER_INPUT_PREFIX} :")#f"\t[{6}] {menu[6]}: {USER_INPUT_PREFIX}")
+            if column_names.lower() == 'q_':
+                return 
+            elif column_names.lower() == 'r_':
                 flag_names = False
-    if flag_names:
-        df.columns = column_names
-        ask_confirm = input(f"\tBạn muốn [ghi dữ liệu] (y/n):\n{USER_INPUT_PREFIX} ").lower()
-        while ask_confirm == "y" or ask_confirm == "n":
-            if ask_confirm == "y":
-                data_archive(path_data)
-                data_write_file(df,path_data)
-            elif ask_confirm == "n":
-                break
-            warning('Tiến trình chưa hoàn tất, vui lòng thử lại')
+            else:
+                try:
+                    column_names = column_names.split(',')        
+                    flag_names = len(column_names) == len(column_names_current)
+                    print(BREAKER)
+                except:
+                    warning_1(menu[6],f"{promp_try}\n\t[Tips] Có thể bạn đã nhập [không] đủ số lượng cột")
+                    warning('Tiến trình chưa hoàn tất, vui lòng thử lại')
+                    flag_names = False
+        if flag_names:
+            df.columns = column_names
             ask_confirm = input(f"\tBạn muốn [ghi dữ liệu] (y/n):\n{USER_INPUT_PREFIX} ").lower()
-            
+            while ask_confirm == "y" or ask_confirm == "n":
+                if ask_confirm == "y":
+                    data_archive(path_data)
+                    data_write_file(df,path_data)
+                elif ask_confirm == "n":
+                    break
+                warning('Tiến trình chưa hoàn tất, vui lòng thử lại')
+                ask_confirm = input(f"\tBạn muốn [ghi dữ liệu] (y/n):\n{USER_INPUT_PREFIX} ").lower()
+    except:
+        return 'fail'
     
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
@@ -596,19 +646,10 @@ def insert_column_index_row(df) -> pd.DataFrame:
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------------------------------------------------------#
-def read_configure_file(menu_path) -> any:
-    "Phương thức đọc tập tin TXT configure, trả về Tên, mô tả, và DS menu"
-    content = ''
-    with open(menu_path,'r',encoding='utf-8') as f:
-        content = [l for l in f.readlines()]
-    content = ''.join(content)
-    # print(content)
-    # print([(m.start(0), m.end(0)) for m in re.finditer('\*',content)][-1])
 
-    name = content.split('*')[1].strip()
-    description = content.split('*')[2].strip()
-    menu = pd.read_csv(menu_path,header=4+len(description.splitlines()),sep = '\t',dtype='str')
-    return name,description,menu
+
+
+
 
 
 if __name__ == '__main__':
@@ -643,7 +684,7 @@ if __name__ == '__main__':
         
         main_data(os.getcwd(),SUB_DATA_VTTB,DATA_NAME_TON_KHO)
 
-        menu_path = f"{path_root}\\{SUB_CONFIGURE}\\menu_data_types.txt"
+        menu_path = f"{path_root}\\{SUB_FOLDER_CONFIG}\\menu_data_types.txt"
         # test_menu = menu_program(menu_path)
         # print(os.path.exists(test_menu.get_path(2)))
 

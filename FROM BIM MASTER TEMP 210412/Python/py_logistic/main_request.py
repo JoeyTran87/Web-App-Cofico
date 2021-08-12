@@ -450,13 +450,13 @@ if __name__ == '__main__':
     try:
         path_root = r"C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic"#input  (f'\nNhập path:{user_input_prefix}')
         username = 'TVPDUY'
-        # subfolder_template = "template"
-        # template_PYC_name = "template_PYC.html"
-        # template_PNX_name = "template_PNX.html"
+        subfolder_template = "template"
+        template_PYC_name = "template_PYC.html"
+        template_PNX_name = "template_PNX.html"
         # request_material(path_root,subfolder_template,template_PYC_name,template_PNX_name)
         # print_orders('PHIẾU YÊU CẦU CUNG CẤP VẬT TƯ THIẾT BỊ',dic_pyc)
         
-        # request_mat(path_root,username, dic_pyc_root, sub_programs, menu)
+        request_mat(path_root,username, dic_pyc_root, sub_programs, menu)
 
         # print('123abc',end='\r')
         # time.sleep(1)
@@ -466,7 +466,7 @@ if __name__ == '__main__':
         # print(now.strftime('%y%m%d%H%M%S'))
 
         # print(unidecode.unidecode(str(dic_pyc_root)))
-        print_dict_keys_pair(dic_vttb)
+        # print_dict_keys_pair(dic_vttb)
         
 
     except KeyboardInterrupt:

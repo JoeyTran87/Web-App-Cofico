@@ -20,8 +20,7 @@ PATH_HOME = '' #os.path.expanduser('~')
 USER_NAME = '' #os.getlogin()
 PROGRAM_USER_DATA_FOLDER = 'cofico_logistic_data' # TODO: FOLDER NÀY NÊN THIẾT LẬP HIDDEN
 PROGRAM_USER_DATA_SUBFOLDER_PATH = ''
-
-# FROM main_logistic
+#-------
 #--------------------------------------------------#
 # GLOBAL VARIABLE
 #--------------------------------------------------#
@@ -46,7 +45,49 @@ SUBFOLDER_TEMPLATE = "template"
 SUBFOLDER_REQUEST = "data_yeu_cau_VTTB"
 
 SUB_DATA_VTTB = "data_vat_tu"
-SUB_CONFIGURE = "configures"
+SUB_FOLDER_CONFIG = "configures"
+
+
+#--------------------------------------------------#
+# CONFIGURER
+#--------------------------------------------------#
+NAME_DATA_EDITOR_MAIN = 'menu_data_main'
+NAME_DATA_SELECTOR = 'menu_data_selector'
+NAME_DATA_BUILDER = 'menu_data_builder'
+#-----------------------------------------------------# Main menu
+PATH_CONFIG_DATA_EDITOR_MAIN = f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_EDITOR_MAIN}.txt"
+#-----------------------------------------------------# Menu Data SELECTOR
+PATH_CONFIG_DATA_SELECTOR =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_SELECTOR}.txt"
+#-----------------------------------------------------# Data Builder
+PATH_CONFIG_DATA_BUILDER =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_BUILDER}.txt"
+
+MENU_DATA_EDITOR_MAIN = None
+MENU_DATA_SELECTOR = None
+MENU_DATA_BUILDER = None
+
+def update_config():
+    """"""
+    global PATH_CONFIG_DATA_EDITOR_MAIN,PATH_CONFIG_DATA_SELECTOR,PATH_CONFIG_DATA_BUILDER
+    """"""
+    
+    PATH_CONFIG_DATA_EDITOR_MAIN = f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_EDITOR_MAIN}.txt"
+    PATH_CONFIG_DATA_SELECTOR =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_SELECTOR}.txt"
+    PATH_CONFIG_DATA_BUILDER =  f"{PATH_ROOT_DIR}\\{SUB_FOLDER_CONFIG}\\{NAME_DATA_BUILDER}.txt"
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+
+
+
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+#-------------------------------------------------------------------------------# 
+
 
 #--------------------------------------------------# DATA DANH MỤC VTTB
 PATH_EXCEL_DM_VTTB=''                   # Path Source Excel
@@ -102,7 +143,7 @@ START_END_LINE = '-'*5 # START FOR LINE
 BREAKER = '-'*80 # BREAK LINE
 USER_INPUT_PREFIX = '>>>> : '
 
-BREAKER_SEC = '_'*40 # SECTION BREAK
+BREAKER_SEC = '- '*25 # SECTION BREAK
 
 # DataFrame
 NA_REPLACE = 'NA'

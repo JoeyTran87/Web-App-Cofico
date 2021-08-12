@@ -1,8 +1,0 @@
-*
-Trình biên tập Tên cột dữ liệu
-*
-Sửa tên tiêu đề cột dữ liệu
-Kiểu dữ liệu Pandas.DataFrame
-*
-Group_Number	Number	Name	Tips	Warning	Source_Sub_Dir	Source_Name
-801	0	Cập nhật dữ liệu từ tập tin [Excel]             

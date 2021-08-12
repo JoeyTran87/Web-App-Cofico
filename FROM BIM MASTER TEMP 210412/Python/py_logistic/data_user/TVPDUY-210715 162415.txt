@@ -1,6 +1,0 @@
-PATH_ROOT	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic
-USER_NAME	TVPDUY
-TIME_OPEN	210715 162415
-SEARCH	[]	8
-SEARCH	[]	0
-SEARCH	[]	39

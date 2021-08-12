@@ -35,6 +35,6 @@ def show_excel_sheet(excel_path) -> list:
     xl = pd.ExcelFile(excel_path)
     sheets = xl.sheet_names
     for i,shn in enumerate(sheets):
-        print(f"\t{shn}")  # see all sheet names
+        print(f"\t-  {shn}")  # see all sheet names
     return sheets
 # main_pd()

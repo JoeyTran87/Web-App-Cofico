@@ -1,28 +1,50 @@
 import functools, time
+# from handle_cmd import spin_three_dots
 from program_var import *
 
-# def decor(func,more='More:'):
-#     #----------------------------------------# bảo tồn tên Function lồng bên trong
-#     @functools.wraps(func) 
-#     def wrapper(*args,**kwargs):
-#         print(f"{more}Something is happening before the function is called.")        
-#         value = func(*args,**kwargs)
-#         print(f"{more}Something is happening after the function is called.")
-#         return value
-#     return wrapper
-# def normal_step(tips='Tips:'):
-#     def decor(func):
-#         #----------------------------------------# bảo tồn tên Function lồng bên trong
-#         @functools.wraps(func) 
-#         def wrapper(*args,**kwargs):
-#             print(f"[{tips}] Some tips before do sometnig")        
-#             value = func(*args,**kwargs)
-#             print(f"[{tips}] Some next actions after done sometnig")
-#             return value
-#         return wrapper
-#     return decor
+def heading_wrap(func):
+    def wrapper (*args,**kwargs):
+        print(BREAKER)
+        func(*args,**kwargs)
+        print(BREAKER)
+    return wrapper
 
-def loop_flow(count = 4):
+def slow_down(func):
+    def wrapper (*args,**kwargs):
+        time.sleep(0.5)
+        func(*args,**kwargs)
+        time.sleep(0.5)
+    return wrapper
+
+def loop_flow(func):
+    """Dành cho Function return Single ouput"""
+    #----------------------------------------# bảo tồn tên Function lồng bên trong
+    @functools.wraps(func) 
+    def wrapper(*args,**kwargs):
+        time.sleep(0.5)
+        value=None
+        try:
+            print(BREAKER_SEC)             
+            value = func(*args,**kwargs)
+            if value.lower() == 'qq'or value.lower() == 'zz'or value.lower() == 'q_'or value.lower() == 'z_' or value.lower() == 'fail':
+                raise Exception('Mã lệnh vòng lặp')
+            elif value.split(':')[-1].lower() == 'y':
+                    return True
+            elif value.split(':')[-1].lower() == 'n':
+                return False
+            else:
+                return value
+        except Exception as ex:
+            if ex.args[0] == 'Mã lệnh vòng lặp':
+                value = f'Interrupter:{value}'
+                return value
+            else:
+                return None
+        
+    return wrapper
+
+def loop_flow_1(count = 4):
+    """Dành cho Function return Multi Output"""
     def decor(func):
         #----------------------------------------# bảo tồn tên Function lồng bên trong
         @functools.wraps(func) 
@@ -30,16 +52,18 @@ def loop_flow(count = 4):
             value=None
             for i in range(count):   
                 print(BREAKER_SEC)             
-                value = func(*args,**kwargs)
-                if value.lower() == 'q_':
-                    print(f"\tBạn chọn [Thoát]\n{BREAKER_SEC}\n\tTiến trình đang thoát")
-                    break
-                elif value.lower() == ' z_':
-                    print(f"\tBạn chọn [Tái khởi]\n{BREAKER_SEC}\n\tĐang tái khởi động tiến trình")
-                elif value.lower() == 'fail':
-                    print(f"\t[!] Tiến trình lỗi, bạn còn [{count-i-1}] lần thực hiện lại")
-                    if count-i-1 == 0:
-                        print(f"\tBạn đã hết [số lần] cho phép thực hiện Tiến trình\t{BREAKER_SEC}\n\tTiến trình đang thoát")
+                value = func(*args,**kwargs)[1]
+                if value.lower() == 'qq':
+                    return '0##'
+                elif value.lower() == 'zz':
+                    return '0###'
+                elif value.lower() == 'q_'or value.lower() == ' z_' or value.lower() == 'fail':
+                    print(f"\t[!] Tiến trình đang [Reset] hoặc [Gặp lỗi]\n\tBạn còn [{count-i-1}] lần thực hiện lại")
+                    return '0#'
+                elif value.lower() == 'y':
+                    return True                
+                elif value.lower() == 'n':
+                    return False
                 else:
                     break
             return value
@@ -48,7 +72,7 @@ def loop_flow(count = 4):
 
 
 
-@loop_flow()
+@loop_flow
 def doSomeThing(name):
     try:
         ask = input('Viết câu lệnh của bạn:\n >>>> :')
@@ -105,6 +129,29 @@ def fatorial_1(n):
 def fatorial(n):
     time.sleep(0.1)
     return 1 if n < 2 else n*fatorial(n-1)
+
+
+def decor_ask_boolean(func):
+    def wrapper(*args,**kwargs):
+        value = None
+        while True:
+            value = func(*args,**kwargs).lower()
+            if value == 'y':
+                value = True
+                break
+            elif value == 'n': 
+                value = False
+                break
+        return value
+
+    return wrapper
+
+
+
+
+
+
+
 
 
 
