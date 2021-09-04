@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.11.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.11.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.11.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.11.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.11.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Import PhotoSwipe Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/default-skin/default-skin.css">
+
+    <!-- A touch of fanciness 💄 -->
+    <link href='https://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+    <style>
+      body {font-family: 'Bitter', Georgia, Times, sans-serif;}
+      h1 {margin: 2em;}
+      .pswp__caption__center {text-align: center;}
+      figure {
+        display: inline-block;
+        width: 33.333%;
+      }
+      img {width: 100%;}
+      .spacer {height: 5em;}
+    </style>
+
+  </head> 
+
+  <body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">          
+          <h1 class="text-center">
+            Tran Nguyen Duy An<br>
+            <small><em>Baby Learning Program</em></small>
+          </h1>  
+          <!-- Galley wrapper that contains all items -->
+          <div id="gallery" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">  
+            <!-- Use figure for a more semantic html -->
+            <!-- <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"> -->
+              <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+              <!-- <a href="./pia/animals/animal (1).jpg" data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="600" data-height="900" itemprop="contentUrl"> -->
+                <!-- Thumbnail -->
+                <!-- <img src="./pia/animals/animal (1).jpg" itemprop="thumbnail" alt="Image description"> -->
+              <!-- </a> -->
+            <!-- </figure> -->
+            
+              
+            
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (1).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="644.5012787723786" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (1).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (10).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="600.0" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (10).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (11).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="695.3424657534247" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (11).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (12).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="457.70964833183046" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (12).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (13).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="639.8936170212766" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (13).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (14).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="833.4975369458128" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (14).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (15).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="746.2444771723123" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (15).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (16).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (16).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (17).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="505.8510638297872" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (17).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (18).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="601.6042780748663" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (18).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (2).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="585.6382978723404" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (2).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (3).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (3).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (4).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (4).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (5).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (5).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (6).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (6).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (7).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="652.1739130434783" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (7).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (8).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="893.3823529411765" data-height="900" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (8).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>
+
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a href="./pia/numberic/numberic (9).jpg" data-caption="Baby Play Learn Program<br><em class='text-muted'>Tran Vo Phuong Duy +84 9 327 82 327<br>duytran.arch@gmail.com</em>" data-width="900" data-height="528.1914893617021" itemprop="contentUrl">
+                  <img src="./pia/numberic/numberic (9).jpg" itemprop="thumbnail" alt="Image description">
+              </a>
+          </figure>         
+            
+            
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <!-- Some spacing 😉 -->
+    <div class="spacer"></div>
+  
+  
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Background of PhotoSwipe. 
+             It's a separate element as animating opacity is faster than rgba(). -->
+        <div class="pswp__bg"></div>
+        <!-- Slides wrapper with overflow:hidden. -->
+        <div class="pswp__scroll-wrap">
+            <!-- Container that holds slides. 
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <!--  Controls are self-explanatory. Order can be changed. -->
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div> 
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Import jQuery and PhotoSwipe Scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe-ui-default.min.js"></script>
+  
+    <script>
+      'use strict';
+  
+      /* global jQuery, PhotoSwipe, PhotoSwipeUI_Default, console */
+  
+      (function($){
+  
+        // Init empty gallery array
+        var container = [];
+  
+        // Loop over gallery items and push it to the array
+        $('#gallery').find('figure').each(function(){
+          var $link = $(this).find('a'),
+              item = {
+                src: $link.attr('href'),
+                w: $link.data('width'),
+                h: $link.data('height'),
+                title: $link.data('caption')
+              };
+          container.push(item);
+        });
+  
+        // Define click event on gallery item
+        $('a').click(function(event){
+  
+          // Prevent location change
+          event.preventDefault();
+  
+          // Define object and gallery options
+          var $pswp = $('.pswp')[0],
+              options = {
+                index: $(this).parent('figure').index(),
+                bgOpacity: 0.85,
+                showHideOpacity: true
+              };
+  
+          // Initialize PhotoSwipe
+          var gallery = new PhotoSwipe($pswp, PhotoSwipeUI_Default, container, options);
+          gallery.init();
+        });
+  
+      }(jQuery));
+    </script>
+  </body>
+</html>
