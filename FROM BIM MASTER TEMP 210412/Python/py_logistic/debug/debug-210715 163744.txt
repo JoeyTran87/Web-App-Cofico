@@ -1,2 +1,0 @@
-2021-07-15 16:37:44,209 -  INFO -  Program START
-2021-07-15 16:37:44,210 -  INFO -  Successfull load all variables

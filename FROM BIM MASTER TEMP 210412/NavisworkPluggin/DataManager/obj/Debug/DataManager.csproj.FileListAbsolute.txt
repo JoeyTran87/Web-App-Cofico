@@ -1,7 +1,0 @@
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\obj\Debug\DataManager.csprojAssemblyReference.cache
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\bin\Debug\DataManager.dll
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\bin\Debug\DataManager.pdb
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\obj\Debug\DataManager.dll
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\obj\Debug\DataManager.pdb
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\obj\Debug\DataManager.DataSeekerForm.resources
-C:\Users\USER\Documents\GitHub\cofico\BIM_master\NavisworkPluggin\DataManager\obj\Debug\DataManager.csproj.GenerateResource.cache

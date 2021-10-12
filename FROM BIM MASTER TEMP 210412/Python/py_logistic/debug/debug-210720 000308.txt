@@ -1,5 +1,0 @@
-2021-07-20 00:03:08,934 -  INFO -  Program START
-2021-07-20 00:03:08,934 -  INFO -  Successfull load all variables
-2021-07-20 00:03:45,423 -  DEBUG -  ARCHIVE FROM C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_vat_tu\data.json
-2021-07-20 00:03:45,423 -  DEBUG -  ARCHIVE TO C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_vat_tu\data-210709022700.json
-2021-07-20 00:03:46,952 -  INFO -  ARCHIVE SUCCESSFUL

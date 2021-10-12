@@ -1,3 +1,0 @@
-2021-07-13 22:32:35,146 -  INFO -  Program START
-2021-07-13 22:32:35,146 -  INFO -  Successfull load all variables
-2021-07-13 22:33:10,445 -  INFO -  Root Path VERIFIED

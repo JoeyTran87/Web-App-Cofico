@@ -1,9 +1,0 @@
-2021-07-20 15:00:09,096 -  INFO -  Program START
-2021-07-20 15:00:09,096 -  INFO -  Successfull load all variables
-2021-07-20 15:00:09,096 -  INFO -  Program START
-2021-07-20 15:00:09,096 -  INFO -  Successfull load all variables
-2021-07-20 15:00:25,030 -  INFO -  Root Path VERIFIED
-2021-07-20 15:00:31,950 -  INFO -  User Data INITIATED	C:\Users\USER\Documents\GitHub\cofico\cofico\FROM BIM MASTER TEMP 210412\Python\py_logistic\data_user\TVPDUY-210720 150031.txt
-2021-07-20 15:00:34,063 -  DEBUG -  User input DONE
-2021-07-20 15:00:34,176 -  DEBUG -  Data of Material and Equipmetn loaded DONE
-2021-07-20 15:00:54,666 -  INFO -  Update data path SUCCESSFUL
